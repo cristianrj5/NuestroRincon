@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi biblioteca</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ================= ESTANTERÍA (pantalla principal) ================= -->
+<main class="room">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="room-border" aria-hidden="true">
+    <i class="fl tl"></i><i class="fl tr"></i><i class="fl bl"></i><i class="fl br"></i>
+  </div>
+
+  <header class="room-title">
+    <h1>Mi biblioteca</h1>
+    <p>Toca un libro para abrirlo</p>
+  </header>
+
+  <section class="shelf-scene" aria-label="Estantería">
+    <div class="lantern left"><i class="glow"></i><img src="assets/farol_dorado.png" alt=""></div>
+    <div class="lantern right"><i class="glow"></i><img src="assets/farol_dorado.png" alt=""></div>
+    <img class="shelf-orn" src="assets/arreglo_floral_06.png" alt="">
+
+    <div class="shelf-frame">
+      <div class="shelf-top"></div>
+      <div class="shelf-books" id="shelfBooks"></div>
+      <div class="plank"></div>
+    </div>
+
+    <img class="rc rc-bl" src="assets/arreglo_floral_01.png" alt="">
+    <img class="rc rc-br" src="assets/arreglo_floral_03.png" alt="">
+    <img class="rc rc-tl" src="assets/arreglo_floral_03.png" alt="">
+    <img class="rc rc-tr" src="assets/arreglo_floral_01.png" alt="">
+  </section>
+</main>
+
+<div id="burst" aria-hidden="true"></div>
+
+<!-- ================= LIBRO ABIERTO ================= -->
+<div id="bookOverlay" class="overlay" aria-hidden="true">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="book-frame">
+    <button class="float-btn close" id="closeBook" title="Cerrar y volver a la estantería">✕</button>
+    <button class="float-btn sparkle" id="burstBtn" title="Destello floral">✦</button>
+    <button class="arrow arrow-prev" id="prev" title="Página anterior" aria-label="Página anterior">‹</button>
+    <button class="arrow arrow-next" id="next" title="Página siguiente" aria-label="Página siguiente">›</button>
+
+    <img class="rc rb-tl" src="assets/arreglo_floral_03.png" alt="">
+    <img class="rc rb-tr" src="assets/arreglo_floral_01.png" alt="">
+    <img class="rc rb-bl" src="assets/arreglo_floral_01.png" alt="">
+    <img class="rc rb-br" src="assets/arreglo_floral_03.png" alt="">
+
+    <!-- Guirnalda de lucecitas (se dibuja desde script.js) -->
+    <div class="lights" id="lights" aria-hidden="true"></div>
+
+    <div class="book-pages" id="pages">
+
+      <!-- 0 · PORTADA -->
+      <section class="spread active">
+        <div class="half">
+          <div class="couple-box" id="couple" title="Toca para lanzar flores">
+            <span class="tag">Nuestro rincón</span>
+            <img class="couple-img" src="assets/pareja_chibi.png" alt="Nosotros dos, de la mano">
+            <i class="fh h1">♥</i><i class="fh h2">♥</i><i class="fh h3">♥</i>
+            <small class="hint">Toca la imagen para lanzar flores</small>
+          </div>
+          <p class="quote">“Entre la inmensidad de la noche y el azul del universo, tú eres la flor más brillante que encontró mi corazón.”</p>
+        </div>
+        <div class="half cover no-flourish">
+          <img class="deco d-top" src="assets/arreglo_floral_04.png" alt="">
+          <img class="deco d-bot" src="assets/arreglo_floral_06.png" alt="">
+          <span class="pill">★ Un pequeño universo hecho para ti</span>
+          <h2 class="book-title">Bajo el cielo<br><em>azul de nuestro amor</em></h2>
+          <p>Un librito donde el negro de la noche se funde con el azul y las flores más coloridas, para guardar nuestros mejores momentos y todo lo que siento por ti.</p>
+          <button class="cta" data-next>Abrir el librito →</button>
+        </div>
+      </section>
+
+      <!-- 1 · CAPÍTULO I -->
+      <section class="spread">
+        <div class="half">
+          <span class="chapter">Capítulo I</span>
+          <h2>Cómo empezó nuestra magia</h2>
+          <p class="dropcap">Hay coincidencias que parecen escritas con luz sobre el cielo nocturno. Antes de ti, todo era calma en tonos oscuros; bastó una conversación, una mirada y tu sonrisa para que todo se pintara de azul eléctrico y flores llenas de vida.</p>
+          <p>Desde ese primer momento supe que no eras un capítulo pasajero, sino el libro entero que quiero leer todos los días.</p>
+          <div class="seal-box">
+            <button class="seal" id="noteBtn" title="Abrir el sobre"><img src="assets/sobre_marfil_rojo.png" alt="Sobre con una promesa"></button>
+            <p class="seal-hint">Toca el sobre para revelar<br>una promesa secreta</p>
+            <p id="noteText" class="promise" hidden>Prometo seguir eligiéndote en cada estación, celebrar tus alegrías y abrazarte fuerte cuando el mundo parezca frío. 💙🌸</p>
+          </div>
+        </div>
+        <div class="half center">
+          <figure class="pframe f-naranja pf-lg">
+            <div class="pf-box"><div class="pf-photo"><img src="assets/pareja_foto_01.jpg" alt="Nosotros dos" style="object-position:50% 30%"></div><img class="pf-art" src="assets/marco_naranja_floral.png" alt=""></div>
+            <p class="cap">El instante en que nuestros caminos se cruzaron bajo el mismo cielo ✨</p>
+          </figure>
+          <img class="accent a-rose" src="assets/rosa_azul_abierta_01.png" alt="">
+        </div>
+      </section>
+
+      <!-- 2 · ÁLBUM -->
+      <section class="spread">
+        <div class="half center">
+          <span class="chapter">Capítulo II</span>
+          <h2>Instantes que guardo en el alma</h2>
+          <figure class="pframe f-rojo pf-md">
+            <div class="pf-box"><div class="pf-photo"><img src="assets/pareja_foto_02.jpg" alt="Nosotros dos, sacando la lengua" style="object-position:50% 0%"></div><img class="pf-art" src="assets/marco_rojo_mariposa.png" alt=""></div>
+            <p class="cap">Risas que iluminan hasta la noche más oscura</p>
+          </figure>
+          <div class="plaque">Capítulo de nuestras risas</div>
+        </div>
+        <div class="half center">
+          <figure class="pframe f-azul pf-lg">
+            <div class="pf-box"><div class="pf-photo"><img src="assets/pareja_foto_03.jpg" alt="Nosotros dos, abrazados" style="object-position:50% 32%"></div><img class="pf-art" src="assets/marco_azul_gris.png" alt=""></div>
+            <p class="cap">Mirarte y saber que ahí quiero quedarme siempre</p>
+          </figure>
+          <img class="accent a-bl" src="assets/ramita_azul_bayas.png" alt="">
+        </div>
+      </section>
+
+      <!-- 3 · RAZONES -->
+      <section class="spread">
+        <div class="half">
+          <span class="chapter">Capítulo III</span>
+          <h2>Lo que hace único a tu corazón</h2>
+          <small>Toca cada sobre para descubrir por qué te amo.</small>
+          <div class="cards">
+            <button class="card c1" data-back="Cuando me miras, todo el ruido del mundo se apaga y solo queda nuestra propia galaxia azul."><img class="env" src="assets/sobre_azul_flores_blancas.png" alt=""><b>Tu mirada</b><span>La paz que encuentro en tus ojos</span></button>
+            <button class="card c2" data-back="Como flores brillantes en medio de la medianoche, tu risa transforma cualquier momento en magia."><img class="env" src="assets/sobre_marfil_rojo.png" alt=""><b>Tu sonrisa</b><span>El color que le das a mis días grises</span></button>
+            <button class="card c3" data-back="Cada abrazo tuyo se siente como volver a casa. Gracias por cuidar lo nuestro con tanto amor."><img class="env" src="assets/sobre_marfil_rojo.png" alt=""><b>Tu corazón</b><span>Tu ternura y tu forma de quererme</span></button>
+            <button class="card c4" data-back="Esta carta es solo el prólogo de todas las páginas y viajes que aún vamos a escribir juntos."><img class="env" src="assets/sobre_azul_flores_blancas.png" alt=""><b>Nuestro futuro</b><span>Todos los sueños que nos faltan</span></button>
+          </div>
+        </div>
+        <div class="half center">
+          <figure class="photo polaroid">
+            <div class="frame"><img src="assets/tortuguita_y_flores.jpg" alt="La tortuguita entre las flores tejidas" style="object-position:50% 42%"></div>
+            <p class="cap">Contigo los pequeños detalles florecen en mil colores</p>
+          </figure>
+          <p class="meter">Nivel de conexión en nuestro universo: <b>Infinito ∞</b></p>
+          <button class="cta" data-bloom>Hacer florecer la página 🌸</button>
+        </div>
+      </section>
+
+      <!-- 4 · PEQUEÑOS TESOROS -->
+      <section class="spread">
+        <div class="half center">
+          <span class="chapter">Capítulo IV</span>
+          <h2>Pequeños tesoros</h2>
+          <p class="lead">Unas flores que nunca se marchitan y una tortuguita que las cuida: detallitos que me hacen pensar en ti.</p>
+          <figure class="pframe f-azul pf-md">
+            <div class="pf-box"><div class="pf-photo"><img src="assets/flores_tejidas.jpg" alt="Flores rojas tejidas en una maceta" style="object-position:50% 36%"></div><img class="pf-art" src="assets/marco_azul_gris.png" alt=""></div>
+            <p class="cap">Flores que nunca se marchitan 🌹</p>
+          </figure>
+          <img class="accent a-bl" src="assets/ramita_azul_hojas.png" alt="">
+        </div>
+        <div class="half center">
+          <figure class="pframe f-rojo pf-lg">
+            <div class="pf-box"><div class="pf-photo"><img src="assets/tortuguita.jpg" alt="Una tortuguita de arcilla" style="object-position:50% 50%"></div><img class="pf-art" src="assets/marco_rojo_mariposa.png" alt=""></div>
+            <p class="cap">La tortuguita que cuida nuestras flores 🐢</p>
+          </figure>
+          <img class="accent a-br2" src="assets/rosa_azul_capullo_02.png" alt="">
+        </div>
+      </section>
+
+      <!-- 5 · CARTA -->
+      <section class="spread">
+        <div class="half">
+          <span class="chapter">Carta</span>
+          <h2>Lo que quiero que sepas</h2>
+          <p class="dropcap">Amor mío, mi señorita desmiel: a pesar de que llevamos muy poco tiempo de pareja, quiero que sepas que te quiero demasiado, que eres la persona más importante para mí y que me encanta todo de ti. Cada día, al despertar, pienso en cómo estás, en que estés bien, que tengas un lindo día y que salgas adelante, mi amor hermoso.</p>
+          <p>Te deseo de formas inmensurables. Muchas veces podré estar raro, podré no hablar mucho, parecer loquito, rarito… pero nunca dudes de lo mucho que te quiero. Cada minuto estás dando vueltas en mi mente, mi bizcochito dulce.</p>
+          <img class="accent a-bl" src="assets/rosa_azul_capullo_01.png" alt="">
+        </div>
+        <div class="half letter-r">
+          <img class="deco d-top" src="assets/arreglo_floral_07.png" alt="">
+          <p>Quiero que sepas que amo pasar mi tiempo contigo: ver series, morderte los cachetes, hacerte el amor, abrazarte, decirte que si quieres pelea, agarrar tus nalguitas y decirte que eres mía.</p>
+          <p class="letter-sign">Att: Tu calvito bello. <img class="pluma" src="assets/pluma_azul_dorada.png" alt=""></p>
+          <p class="te-quiero">Te quiero mucho, mi amor 💙</p>
+          <img class="accent a-rosa-big" src="assets/rosa_azul_abierta_02.png" alt="">
+        </div>
+      </section>
+
+      <!-- 6 · EPÍLOGO -->
+      <section class="spread">
+        <div class="half">
+          <span class="chapter">Epílogo</span>
+          <h2>Para hoy, mañana y siempre</h2>
+          <p>Gracias por ser mi refugio favorito, mi complicidad de todos los días y la razón por la que incluso la noche más oscura brilla con flores de mil colores.</p>
+          <p>No importa cuántos capítulos pasemos, mi parte favorita de la historia siempre será caminar de tu mano.</p>
+          <p class="sign">Con todo mi amor,<br><span>Tu calvito bello</span> 💙🌸</p>
+          <img class="accent a-bouquet" src="assets/arreglo_floral_02.png" alt="">
+        </div>
+        <div class="half center no-flourish">
+          <img class="deco d-top" src="assets/arreglo_floral_05.png" alt="">
+          <img class="deco d-bot" src="assets/arreglo_floral_07.png" alt="">
+          <div class="lantern-big"><i class="glow"></i><img src="assets/farol_dorado.png" alt="Farol encendido"></div>
+          <h3>¿Te gustó nuestra carta?</h3>
+          <p>Inunda la pantalla de flores y destellos azules, o vuelve a la portada para releerla.</p>
+          <button class="cta love" data-burst="35">✦ ¡Enviar un latido de flores!</button>
+          <button class="cta ghost" data-goto="0">↺ Volver a la portada</button>
+        </div>
+      </section>
+
+      <!-- Capa donde gira la hoja -->
+      <div id="leafLayer" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

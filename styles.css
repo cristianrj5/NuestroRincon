@@ -1,0 +1,360 @@
+:root{
+  --bg:#050811; --cyan:#38bdf8;
+  --tapa:#1b2a4a; --tapa-claro:#2c4170; --tapa-borde:#0e1830; --dorado:#d4af37; --dorado-suave:#c9a24a;
+  --papel:#ecdcb0; --tinta:#2b2a33; --tinta-suave:#6b5a33; --linea:rgba(107,90,51,.35);
+  --vino:#8b1230;
+  --titulo:'Playfair Display',Georgia,serif; --texto:'Lora',Georgia,serif;
+  --textura:url('https://www.transparenttextures.com/patterns/papyrus.png');
+  --flourish:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' fill='none' stroke='%23b8913a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M4 4H74M4 4V74'/%3E%3Cpath d='M12 12H50M12 12V50' opacity='.6'/%3E%3Cpath d='M4 44C18 44 22 28 38 28 48 28 50 40 42 42 36 43 34 36 40 35'/%3E%3Cpath d='M44 4C44 18 28 22 28 38 28 48 40 50 42 42 43 36 36 34 35 40'/%3E%3Cpath d='M58 8C66 14 64 24 56 26 51 27 49 22 53 21'/%3E%3Cpath d='M8 58C14 66 24 64 26 56 27 51 22 49 21 53'/%3E%3C/svg%3E");
+  --flip:1500ms;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:#dbeafe;font-family:var(--texto);font-size:1rem;line-height:1.6;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+[hidden]{display:none!important}
+svg{overflow:visible}
+
+/* Estrellas (generadas por JS) */
+.stars{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.stars i{position:absolute;border-radius:50%;background:#ffe9a8;box-shadow:0 0 6px 1px rgba(255,220,130,.7);animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.25;transform:scale(.6)}}
+
+/* Rosas (racimos en esquinas) */
+.rc{position:absolute;width:clamp(150px,20vw,300px);height:auto;pointer-events:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6));animation:sway 8s ease-in-out infinite}
+@keyframes sway{50%{rotate:2.5deg}}
+
+/* =====================================================
+   ESTANTERÍA
+   ===================================================== */
+.room{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.6rem;padding:3rem 1rem;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 35%,rgba(44,65,112,.5),transparent 62%),
+    linear-gradient(#0a1226,#050811)}
+.room-border{position:absolute;inset:16px;border:1px solid rgba(201,162,74,.35);border-radius:6px;pointer-events:none;z-index:1}
+.room-border .fl{position:absolute;width:clamp(60px,9vw,120px);height:clamp(60px,9vw,120px);margin:-2px;background:var(--flourish) center/contain no-repeat}
+.room-border .tl{top:0;left:0}.room-border .tr{top:0;right:0;transform:scaleX(-1)}
+.room-border .bl{bottom:0;left:0;transform:scaleY(-1)}.room-border .br{bottom:0;right:0;transform:scale(-1,-1)}
+.room-title{position:relative;z-index:2;text-align:center}
+.room-title h1{font-family:var(--titulo);font-weight:500;font-size:clamp(2rem,4.5vw,3rem);margin:0;color:#ecd9a0;letter-spacing:.02em;text-shadow:0 0 24px rgba(212,175,55,.35)}
+.room-title p{text-align:center;margin:.2rem 0 0;color:#c8d2ea;font-size:.95rem}
+
+.shelf-scene{position:relative;z-index:2;width:min(820px,90vw);margin-top:2rem}
+.shelf-orn{position:absolute;top:-70px;left:50%;width:min(560px,72%);height:auto;transform:translateX(-50%);z-index:3;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6))}
+.shelf-frame{position:relative;padding:0 18px;border-radius:6px 6px 4px 4px;
+  background:linear-gradient(90deg,#4a2f20,#6b4630 6%,#4a2f20 12%,#4a2f20 88%,#6b4630 94%,#4a2f20);
+  box-shadow:0 30px 60px rgba(0,0,0,.75),0 0 0 2px rgba(201,162,74,.45)}
+.shelf-top{height:30px;margin:0 -18px;border-radius:6px 6px 0 0;
+  background:linear-gradient(#e0bd5c 0,#a97a1c 8%,#6b4630 12%,#4a2f20 100%);box-shadow:inset 0 -2px 0 rgba(201,162,74,.6)}
+.shelf-books{position:relative;display:flex;align-items:flex-end;gap:8px;min-height:300px;padding:38px 26px 0;
+  background:linear-gradient(#24140d,#3a2418 70%,#2a1810);
+  box-shadow:inset 0 14px 34px rgba(0,0,0,.85),inset 0 0 0 2px rgba(201,162,74,.25)}
+.plank{height:24px;margin:0 -18px;border-radius:0 0 4px 4px;
+  background:linear-gradient(#a97a1c 0,#6b4630 12%,#4a2f20 100%);box-shadow:0 14px 28px rgba(0,0,0,.7),inset 0 2px 0 rgba(255,225,140,.4)}
+
+/* Faroles */
+.lantern{position:absolute;bottom:calc(100% - 4px);width:74px;z-index:3}
+.lantern img{position:relative;display:block;width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.lantern.left{left:5%}.lantern.right{right:5%}
+.glow{position:absolute;left:50%;top:50%;width:190%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,200,90,.5),transparent 65%);animation:glow 3.2s ease-in-out infinite}
+.lantern.right .glow{animation-delay:1.2s}
+@keyframes glow{50%{opacity:.5;transform:translate(-50%,-50%) scale(.88)}}
+/* Racimos de rosas alrededor del cabinete */
+.rc-bl{left:-16%;bottom:-100px;z-index:4}
+.rc-br{right:-12%;bottom:-90px;transform:scaleX(-1);z-index:4}
+.rc-tl{left:-9%;top:-80px;transform:scaleY(-1);z-index:4}
+.rc-tr{right:-9%;top:-80px;transform:scale(-1,-1);z-index:4}
+
+/* Libros */
+.shelf-book{position:relative;flex:0 0 auto;width:78px;height:236px;padding:0;border:0;border-radius:3px 7px 7px 3px;
+  display:flex;align-items:center;justify-content:center;transition:transform .3s ease,box-shadow .3s ease;box-shadow:3px 0 8px rgba(0,0,0,.6)}
+.shelf-book:hover{transform:translateY(-14px) rotate(-2deg);box-shadow:6px 14px 22px rgba(0,0,0,.65)}
+.shelf-book:focus-visible{outline:2px solid var(--dorado);outline-offset:4px}
+.shelf-book span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--titulo);font-size:.85rem;letter-spacing:.06em;
+  color:#e6c872;text-shadow:0 1px 2px rgba(0,0,0,.6);pointer-events:none;white-space:nowrap}
+.shelf-book::before,.shelf-book::after,.dbook::before,.dbook::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--dorado);opacity:.8}
+.shelf-book::before,.dbook::before{top:24px}.shelf-book::after,.dbook::after{bottom:24px}
+.cover-luna{background:linear-gradient(90deg,#0e1830 0,#1b2a4a 14%,#2c4170 55%,#1b2a4a 100%)}
+
+.shelf-slot{flex:0 0 auto;width:78px;height:236px;border:2px dashed rgba(130,205,255,.75);border-radius:3px 7px 7px 3px;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#8fd0ff;cursor:not-allowed;
+  background:rgba(80,170,255,.07);box-shadow:0 0 18px rgba(80,170,255,.4),inset 0 0 14px rgba(80,170,255,.18)}
+.shelf-spacer{flex:1}
+.dbook{position:relative;flex:0 0 auto;width:52px;border-radius:3px 6px 6px 3px;box-shadow:3px 0 8px rgba(0,0,0,.6),inset 0 0 0 2px rgba(212,175,55,.55);
+  background-image:radial-gradient(circle at 50% 50%,rgba(212,175,55,.5) 0 6px,transparent 7px),linear-gradient(90deg,rgba(0,0,0,.35),transparent 18%,rgba(255,255,255,.08) 60%,rgba(0,0,0,.25))}
+.db-red{height:226px;background-color:#8c1a2e}
+.db-green{height:230px;background-color:#1f6b45}
+.db-purple{height:236px;background-color:#6a3d9a}
+.db-pink{height:232px;background-color:#c98a8a}
+.db-lean{height:228px;background-color:#c98a8a;transform:rotate(9deg);transform-origin:bottom left;margin-left:10px}
+.shelf-candles{flex:0 0 auto;align-self:flex-end;height:150px;width:auto;margin-left:6px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6));animation:candleGlow 3s ease-in-out infinite}
+@keyframes candleGlow{50%{filter:drop-shadow(0 4px 8px rgba(0,0,0,.6)) brightness(1.12)}}
+/* =====================================================
+   LIBRO ABIERTO
+   ===================================================== */
+.overlay{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at center,#0c1630,#03060f 80%);
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s}
+.overlay.open{opacity:1;visibility:visible}
+
+.book-frame{position:relative;z-index:2;width:min(98vw,1440px);height:min(95vh,920px);padding:26px 32px;border-radius:14px;
+  background:linear-gradient(135deg,var(--tapa-claro) 0%,var(--tapa) 45%,var(--tapa-borde) 100%);
+  border:2px solid var(--tapa-borde);
+  box-shadow:0 0 0 3px #0a1226,0 30px 80px rgba(0,0,0,.85),inset 0 0 25px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,255,255,.08);
+  /* Estado "libro cerrado": solo se ve la tapa derecha, centrada */
+  transform:translate(-25%,50px) scale(.82);clip-path:inset(-140px -140px -140px 50%);
+  transition:transform 1s cubic-bezier(.2,.8,.2,1),clip-path 1s cubic-bezier(.2,.8,.2,1)}
+.overlay.open .book-frame{transform:translate(-25%,0) scale(.92)}
+.overlay.opened .book-frame{transform:none;clip-path:inset(-140px);transition-duration:var(--open-ms,2200ms);transition-timing-function:cubic-bezier(.45,.05,.2,1)}
+.overlay.closing .book-frame{transform:scale(.9)!important;clip-path:inset(-140px)!important;transition:transform .4s ease!important}
+/* Botones y rosas aparecen cuando el libro ya esta abierto */
+.arrow,.float-btn,.book-frame .rc{transition:opacity .6s ease .2s,transform .2s,background .2s}
+.overlay:not(.opened) .arrow,.overlay:not(.opened) .float-btn,.overlay:not(.opened) .book-frame .rc{opacity:0;pointer-events:none}
+.spread.closed-state .left-page{visibility:hidden}
+
+/* Tapa cerrada (cara frontal de la hoja que abre el libro) */
+.closed-cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;border-radius:0 5px 5px 0;
+  background:radial-gradient(ellipse at 40% 30%,#34508a,#1b2a4a 55%,#0e1830);box-shadow:inset 0 0 0 1px rgba(212,175,55,.5),inset 0 0 40px rgba(0,0,0,.45)}
+.closed-cover::before{content:"";position:absolute;inset:14px;border:1px solid rgba(212,175,55,.6);border-radius:4px}
+.closed-cover img{width:78%;height:auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.closed-cover h2{font-family:var(--titulo);font-weight:500;font-size:clamp(1.5rem,3vw,2.3rem);color:#ecd9a0;text-shadow:0 2px 6px rgba(0,0,0,.5);line-height:1.2}
+.closed-cover h2::after{display:none}
+.closed-cover h2 em{display:block;font-style:italic;color:#c8d6f5}
+.book-frame::before{content:"";position:absolute;inset:9px;border:1px solid rgba(212,175,55,.45);border-radius:9px;pointer-events:none}
+
+/* Rosas sobre la tapa */
+.rb-tl{left:-95px;top:-95px;transform:scaleY(-1);z-index:7}
+.rb-tr{right:-95px;top:-95px;transform:scale(-1,-1);z-index:7}
+.rb-bl{left:-95px;bottom:-95px;z-index:7}
+.rb-br{right:-95px;bottom:-95px;transform:scaleX(-1);z-index:7}
+
+.book-pages{position:relative;height:100%;perspective:2400px}
+.book-pages::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:12px;transform:translateX(-50%);z-index:4;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(40,25,5,.4),transparent)}
+
+.spread{position:absolute;inset:0;display:none;grid-template-columns:1fr 1fr;z-index:1}
+.spread.active{display:grid}
+.spread.under{z-index:2}
+.spread.fade{animation:fade .45s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.spread.under.hide-left .left-page,.spread.under.hide-right .right-page{visibility:hidden}
+
+/* Hojas */
+.half{position:relative;height:100%;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#b79c62 transparent;
+  color:var(--tinta);padding:clamp(2.6rem,4.4vw,3.6rem) clamp(2.4rem,4.4vw,3.8rem) 3.4rem;
+  display:flex;flex-direction:column;gap:.9rem;
+  background-color:var(--papel);background-image:var(--textura)}
+.left-page{border-radius:5px 0 0 5px;
+  background-image:linear-gradient(to left,rgba(60,40,10,.34),transparent 11%),var(--textura);
+  box-shadow:inset 10px 0 16px -12px rgba(0,0,0,.45)}
+.right-page{border-radius:0 5px 5px 0;
+  background-image:linear-gradient(to right,rgba(60,40,10,.34),transparent 11%),var(--textura);
+  box-shadow:inset -10px 0 16px -12px rgba(0,0,0,.45)}
+.center{align-items:center;justify-content:center;text-align:center}
+.folio{position:absolute;bottom:1rem;left:0;right:0;text-align:center;font-size:.85rem;color:var(--tinta-suave);pointer-events:none}
+
+/* Esquinas doradas de las hojas */
+.half::before,.half::after{content:"";position:absolute;width:clamp(48px,5vw,66px);height:clamp(48px,5vw,66px);background:var(--flourish) center/contain no-repeat;pointer-events:none;opacity:.9}
+.left-page::before{top:8px;left:8px}
+.left-page::after{bottom:8px;left:8px;transform:scaleY(-1)}
+.right-page::before{top:8px;right:8px;transform:scaleX(-1)}
+.right-page::after{bottom:8px;right:8px;transform:scale(-1,-1)}
+.no-flourish::before,.no-flourish::after{display:none}
+
+/* Decoracion de las hojas (imagenes) */
+.deco{position:absolute;left:50%;transform:translateX(-50%);width:min(88%,440px);height:auto;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(60,40,10,.3))}
+.d-top{top:1.4rem}.d-bot{bottom:2.8rem}
+.accent{position:absolute;height:auto;pointer-events:none;filter:drop-shadow(1px 3px 3px rgba(60,30,10,.4))}
+.a-rose{width:clamp(80px,9vw,120px);right:clamp(1.6rem,4vw,3.4rem);bottom:4.4rem;transform:rotate(-8deg)}
+.a-bouquet{width:clamp(130px,16vw,200px);right:clamp(1.4rem,4vw,3rem);bottom:2.8rem}
+.pluma{width:64px;height:auto;vertical-align:middle;margin-left:.4rem;transform:rotate(12deg)}
+/* Hoja que gira */
+#leafLayer{position:absolute;inset:0;pointer-events:none;z-index:6;perspective:2400px}
+.leaf{position:absolute;top:0;bottom:0;width:50%;transform-style:preserve-3d;transition:transform var(--flip) cubic-bezier(.42,.04,.2,1)}
+.cast{position:absolute;top:0;bottom:0;width:50%;pointer-events:none;opacity:0;animation:cast var(--flip) ease-in-out}
+.cast.fwd{left:50%;background:linear-gradient(to right,rgba(40,25,5,.5),transparent 70%)}
+.cast.bwd{left:0;background:linear-gradient(to left,rgba(40,25,5,.5),transparent 70%)}
+@keyframes cast{0%,100%{opacity:0}45%{opacity:1}}
+.leaf.fwd{left:50%;transform-origin:left center}
+.leaf.fwd.turning{transform:rotateY(-180deg)}
+.leaf.bwd{left:0;transform-origin:right center}
+.leaf.bwd.turning{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.face .half{width:100%;height:100%;overflow:hidden}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(30,18,0,.55);opacity:0}
+.leaf.turning .face::after{animation:shade var(--flip) ease-in-out}
+@keyframes shade{0%,100%{opacity:0}50%{opacity:.45}}
+
+/* Flechas flotantes */
+.arrow{position:absolute;top:50%;z-index:10;width:48px;height:48px;margin-top:-24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;padding:0 0 4px;font-size:2rem;line-height:1;
+  color:var(--papel);background:rgba(27,42,74,.85);border:1px solid var(--dorado);box-shadow:0 4px 14px rgba(0,0,0,.45);transition:transform .2s,background .2s}
+.arrow:hover{transform:scale(1.12);background:var(--tapa-claro)}
+.arrow-prev{left:46px}.arrow-next{right:46px}
+
+.float-btn{position:absolute;z-index:10;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--tapa);color:var(--dorado);border:1.5px solid var(--dorado);font-size:1.1rem;box-shadow:0 5px 15px rgba(0,0,0,.5);transition:transform .2s}
+.float-btn:hover{transform:scale(1.1)}
+.close{top:12px;right:14px}
+.sparkle{top:12px;right:62px}
+
+/* =====================================================
+   CONTENIDO
+   ===================================================== */
+h1,h2,h3{font-family:var(--titulo);font-weight:700;line-height:1.2;margin:0;color:var(--tapa)}
+h2{font-size:clamp(1.5rem,2.6vw,2.1rem)}
+h2::after{content:"";display:block;height:1px;width:60%;margin-top:.7rem;background:linear-gradient(to right,#8a7440,transparent)}
+.center h2::after,.cover h2::after{margin-inline:auto;background:linear-gradient(to right,transparent,#8a7440,transparent)}
+.book-title{font-size:clamp(2.1rem,4.2vw,3.2rem);text-align:left;align-self:stretch}
+.book-title em{font-style:italic;font-weight:500;color:var(--tapa-claro)}
+.book-title::after{margin-inline:0!important;background:linear-gradient(to right,#b8913a,transparent)!important;width:90%}
+h3{font-size:1.2rem}
+p{margin:0;text-align:justify;hyphens:auto;font-size:1.05rem}
+.center p,.cover p{text-align:center}
+small{font-size:.85rem;color:var(--tinta-suave)}
+.chapter{align-self:flex-start;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-suave)}
+.center .chapter{align-self:center}
+.quote{font-style:italic;text-align:center;padding:.8rem 1rem;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.cover{justify-content:center;gap:1.3rem;align-items:center}
+.cover p{max-width:34ch}
+.pill{border:1px solid var(--linea);border-radius:999px;padding:.3rem 1rem;font-size:.8rem;color:var(--tinta-suave);background:rgba(255,255,255,.2)}
+.sign{margin-top:auto;font-style:italic;text-align:left}
+.sign span{font-family:var(--titulo);font-size:1.5rem;color:var(--tapa)}
+.dropcap::first-letter{float:left;font-family:var(--titulo);font-weight:700;font-size:4.2rem;line-height:.8;padding:.3rem .5rem 0 0;color:#b8913a}
+
+.cta{padding:.75rem 1.5rem;border-radius:6px;border:1px solid var(--dorado);font-family:var(--titulo);font-weight:500;font-size:1rem;
+  color:var(--papel);background:linear-gradient(180deg,var(--tapa-claro),var(--tapa));box-shadow:0 4px 12px rgba(14,24,48,.4);transition:.25s;align-self:center}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(14,24,48,.5)}
+.cta.ghost{background:rgba(255,255,255,.25);color:var(--tinta);border-color:var(--tinta-suave);box-shadow:none}
+.cta.ghost:hover{background:rgba(255,255,255,.45)}
+.cta.love{background:linear-gradient(180deg,#a3173a,#5e0a1c);border-color:#d9a0a8}
+
+/* Pareja */
+.couple-box{position:relative;flex:1 1 0;min-height:240px;border-radius:10px;overflow:hidden;cursor:pointer;
+  box-shadow:0 10px 24px rgba(14,24,48,.5),0 0 0 3px #10192e,0 0 0 4px rgba(201,162,74,.65)}
+.couple-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;animation:coupleFloat 7s ease-in-out infinite}
+@keyframes coupleFloat{50%{transform:scale(1.04) translateY(-5px)}}
+.couple-box.pulse .couple-img{animation:couplePulse .6s ease}
+@keyframes couplePulse{40%{transform:scale(1.08)}}
+.fh{position:absolute;bottom:-24px;font-style:normal;font-size:1.5rem;color:#ff7b9c;opacity:0;pointer-events:none;text-shadow:0 0 10px rgba(255,120,150,.7);animation:heartUp 6s ease-in infinite}
+.h1{left:16%}.h2{left:50%;font-size:1.1rem;animation-delay:2s}.h3{left:82%;animation-delay:3.8s}
+@keyframes heartUp{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.9}100%{transform:translateY(-420px) scale(1.25) rotate(14deg);opacity:0}}
+.tag{position:absolute;top:10px;left:12px;z-index:2;font-size:.78rem;padding:.1rem .8rem;border-radius:99px;background:rgba(10,15,30,.72);border:1px solid var(--dorado-suave);color:#ecd9a0}
+.hint{position:absolute;bottom:8px;left:0;width:100%;text-align:center;pointer-events:none;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+/* Fotos con marco (PNG): la foto va detras del marco */
+.pframe{position:relative;margin:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.pf-box{position:relative;aspect-ratio:var(--ar);width:min(100%,calc(var(--mh) * var(--ar)));filter:drop-shadow(0 8px 14px rgba(60,40,10,.35));transition:transform .5s ease}
+.pframe:hover .pf-box{transform:translateY(-4px) rotate(-.6deg)}
+.pf-photo{position:absolute;left:var(--il);right:var(--ir);top:var(--it);bottom:var(--ib);overflow:hidden;background:#cdb67e}
+.pf-photo>img{width:100%;height:100%;object-fit:cover;filter:sepia(.12) contrast(1.05);transition:transform .8s ease}
+.pframe:hover .pf-photo>img{transform:scale(1.05)}
+.pf-art{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.f-azul{--ar:1.183;--il:15%;--ir:13%;--it:13%;--ib:13%}
+.f-rojo{--ar:.873;--il:15%;--ir:12%;--it:13%;--ib:10%}
+.f-naranja{--ar:.817;--il:8%;--ir:15%;--it:12%;--ib:14%}
+.pf-lg{--mh:46vh}.pf-md{--mh:42vh}.pf-sm{--mh:31vh}
+.cap{width:100%;margin-top:.4rem;background:transparent;border:0;border-bottom:1px solid transparent;color:var(--tinta);font:italic .95rem var(--texto);text-align:center}
+.cap:focus{outline:0;border-color:var(--tapa)}
+.plaque{padding:.55rem 1.6rem;font-family:var(--titulo);font-size:1rem;color:#4a3a14;border:1px solid #8a6a1f;border-radius:6px;
+  background:linear-gradient(#f4e2a2,#d9b95c);box-shadow:0 3px 8px rgba(60,40,10,.4),inset 0 0 0 2px rgba(255,255,255,.3)}
+/* Polaroid con cinta */
+.photo{position:relative;margin:0;width:100%;max-width:400px;padding:.9rem .9rem 1rem;border-radius:2px;background:#f6efd9;
+  box-shadow:0 8px 18px rgba(60,40,10,.35);transform:rotate(1.5deg);transition:.4s}
+.photo:hover{transform:rotate(0) translateY(-4px)}
+.frame{position:relative;height:clamp(220px,40vh,340px);overflow:hidden;background:#cdb67e}
+.frame img{width:100%;height:100%;object-fit:cover;filter:sepia(.18) contrast(1.05);transition:transform .8s}
+.photo:hover img{transform:scale(1.04)}
+.photo::before{content:"";position:absolute;top:-16px;left:50%;width:130px;height:30px;margin-left:-65px;transform:rotate(-2deg);
+  background:repeating-linear-gradient(45deg,#f1d3c4 0 8px,#f7e6dc 8px 16px);opacity:.92;box-shadow:0 2px 4px rgba(0,0,0,.2)}
+/* Sobre de la promesa */
+.seal-box{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:.4rem;padding-bottom:.5rem}
+.seal{padding:0;border:0;background:none;transition:transform .35s;animation:envFloat 5s ease-in-out infinite}
+.seal img{display:block;width:clamp(160px,17vw,230px);height:auto;filter:drop-shadow(0 8px 10px rgba(60,40,10,.4))}
+.seal:hover{transform:scale(1.05) rotate(-2deg)}
+@keyframes envFloat{50%{translate:0 -7px}}
+.seal-hint{font-style:italic;color:var(--tinta-suave);text-align:center;font-size:.95rem}
+.promise{padding:.8rem 1rem;border:1px dashed var(--tinta-suave);border-radius:4px;background:rgba(255,255,255,.35);text-align:center!important;font-size:.95rem;animation:letterRise .8s ease both}
+@keyframes letterRise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* Sobres del capitulo III */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1rem;margin:auto 0}
+.card{position:relative;padding:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:.1rem;color:var(--tinta);transition:transform .4s ease}
+.card:nth-child(odd){transform:rotate(-2deg)}.card:nth-child(even){transform:rotate(1.5deg)}
+.card .env{width:100%;max-width:240px;height:auto;filter:drop-shadow(0 6px 8px rgba(60,40,10,.35));transition:transform .4s ease}
+.card:hover .env{transform:translateY(-6px) scale(1.04)}
+.card b{font-family:var(--titulo);font-size:.95rem;font-weight:700;color:var(--tapa)}
+.card span{display:none}
+.card.open span{display:block;position:absolute;left:7%;right:7%;top:4%;bottom:22%;padding:.55rem .6rem;background:#fbf4dc;border:1px solid #d9c690;border-radius:3px;
+  color:var(--tinta);font-size:.82rem;line-height:1.4;text-align:center;overflow:auto;z-index:2;box-shadow:0 4px 10px rgba(60,40,10,.35);animation:letterRise .6s ease both}
+.meter b{color:var(--vino)}
+
+/* Farol del epilogo */
+.lantern-big{position:relative;display:flex;justify-content:center;margin-bottom:.4rem}
+.lantern-big img{position:relative;height:clamp(110px,17vh,170px);width:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
+.lantern-big .glow{width:260%}
+/* Partículas */
+#burst{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+#burst span{position:absolute;font-size:1.8rem;transition:transform 1.6s cubic-bezier(.16,1,.3,1),opacity 1.6s;opacity:1}
+
+/* =====================================================
+   MÓVIL
+   ===================================================== */
+@media (max-width:760px){
+  .overlay{align-items:flex-start;overflow-y:auto}
+  .book-frame{height:auto;min-height:100vh;width:100%;border-radius:0;padding:14px 12px 40px}
+  .book-pages{height:auto}
+  .book-pages::after{display:none}
+  .spread.active{position:relative;grid-template-columns:1fr}
+  .half{height:auto;overflow:visible;min-height:0;padding-bottom:4rem}
+  .left-page{border-radius:5px 5px 0 0}.right-page{border-radius:0 0 5px 5px}
+  .rb-tl,.rb-tr,.rb-bl,.rb-br{display:none}
+  .arrow{position:fixed;top:auto;bottom:16px;margin-top:0}
+  .arrow-prev{left:16px}.arrow-next{right:16px}
+  .close{position:fixed;top:8px;right:8px}.sparkle{position:fixed;top:8px;right:56px}
+  .cards{grid-template-columns:1fr 1fr}
+  .shelf-books{padding:38px 12px 0;gap:5px;overflow-x:auto}
+  .rc-tl,.rc-tr{display:none}
+}
+
+/* Epilogo: el contenido queda entre las dos guirnaldas */
+.no-flourish.center{padding-top:clamp(8rem,17vh,10rem);padding-bottom:clamp(7rem,15vh,9rem)}
+.no-flourish.center .deco{width:min(66%,300px)}
+.no-flourish.center .d-top{top:1rem}.no-flourish.center .d-bot{bottom:2.4rem}
+.no-flourish.center{padding-top:clamp(6.5rem,14vh,8.5rem);padding-bottom:clamp(6.5rem,14vh,8.5rem)}
+
+/* Guirnalda de lucecitas calidas (cuelga sobre el borde superior del libro) */
+.lights{position:absolute;left:0;right:0;top:-8px;height:120px;z-index:8;pointer-events:none;transition:opacity 1s ease 1.2s}
+.lights svg{display:block;overflow:visible}
+.overlay:not(.opened) .lights{opacity:0;transition-delay:0s}
+.bulb .glass{fill:#ffd98a;filter:drop-shadow(0 0 5px #ffb445) drop-shadow(0 0 12px rgba(255,170,60,.8))}
+.bulb .spill{mix-blend-mode:screen;opacity:.9}
+.bulb.b0 .glass,.bulb.b0 .spill{animation:twinkleA 3.2s ease-in-out infinite}
+.bulb.b1 .glass,.bulb.b1 .spill{animation:twinkleA 2.6s ease-in-out .8s infinite}
+.bulb.b2 .glass,.bulb.b2 .spill{animation:twinkleA 3.8s ease-in-out 1.6s infinite}
+@keyframes twinkleA{0%,100%{opacity:1}50%{opacity:.45}}
+.bulb:nth-child(4n) .glass{fill:#ffc56b}
+
+/* Hacer florecer la pagina */
+.bloom{position:absolute;height:auto;pointer-events:none;opacity:0;transform:scale(0);transform-origin:50% 90%;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(255,210,120,.45));animation:bloomUp 5.4s cubic-bezier(.2,.9,.25,1) both}
+@keyframes bloomUp{
+  0%{opacity:0;transform:scale(0) rotate(calc(var(--rot) - 50deg))}
+  14%{opacity:1;transform:scale(1.18) rotate(var(--rot))}
+  22%{transform:scale(1) rotate(var(--rot))}
+  82%{opacity:1;transform:scale(1.04) rotate(calc(var(--rot) + 4deg))}
+  100%{opacity:0;transform:scale(.92) translateY(-16px) rotate(calc(var(--rot) + 7deg))}}
+#burst span img{display:block;height:auto}
+
+/* Fotos fijas: leyendas de texto y nuevos acentos */
+p.cap{text-align:center;color:var(--tinta);font:italic .95rem var(--texto);margin:.4rem 0 0}
+.lead{max-width:40ch;font-size:1rem;color:var(--tinta-suave)}
+.a-bl{width:clamp(60px,7vw,90px);left:clamp(1.8rem,4vw,3.4rem);bottom:4.2rem;transform:rotate(-8deg)}
+.a-br2{width:clamp(70px,8vw,100px);right:clamp(1.8rem,4vw,3.4rem);bottom:4.2rem;transform:rotate(10deg)}
+.a-rosa-big{width:clamp(130px,16vw,200px);left:50%;bottom:3.2rem;transform:translateX(-50%)}
+.letter-sign{text-align:right;font-family:var(--titulo);font-style:italic;font-size:1.4rem;color:var(--tapa);margin-top:.6rem}
+.te-quiero{text-align:center;font-family:var(--titulo);font-weight:500;font-size:1.25rem;color:var(--vino);margin-top:.2rem}
+.letter-r{justify-content:center;gap:1.1rem}
+.letter-r .deco{width:min(70%,320px)}
+.letter-r .a-rosa-big{width:clamp(110px,13vw,160px)}
